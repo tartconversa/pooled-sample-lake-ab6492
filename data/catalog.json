@@ -1,0 +1,344 @@
+{
+  "title": "研发样本分装混池的实验事实仓",
+  "synthetic": true,
+  "tables": [
+    {
+      "name": "materials",
+      "description": "初始原样与缓冲液。",
+      "columns": [
+        {
+          "name": "material_id",
+          "type": "string",
+          "description": "根材料",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "sample或buffer",
+          "nullable": true
+        },
+        {
+          "name": "project",
+          "type": "string",
+          "description": "项目",
+          "nullable": true
+        },
+        {
+          "name": "volume_ul",
+          "type": "number",
+          "description": "实收体积",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "material_id"
+      ],
+      "references": [],
+      "path": "data/materials.csv",
+      "row_count": 4,
+      "sha256": "5f2833deb3a545ad3fb4d202982e3c1b27382855c99ee77dd6aa994771be6409"
+    },
+    {
+      "name": "transforms",
+      "description": "真实转化，不是自动推导。",
+      "columns": [
+        {
+          "name": "transform_id",
+          "type": "string",
+          "description": "动作",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "aliquot或mix或dilute",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "发生",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "transform_id"
+      ],
+      "references": [],
+      "path": "data/transforms.csv",
+      "row_count": 4,
+      "sha256": "38e32eb220312ce4b4d0eb7ca9b42c5b9390442bade484555db01c8470ac0b2b"
+    },
+    {
+      "name": "transform_inputs",
+      "description": "原样与子管可同时作为输入但须余额足够。",
+      "columns": [
+        {
+          "name": "input_id",
+          "type": "string",
+          "description": "行",
+          "nullable": true
+        },
+        {
+          "name": "transform_id",
+          "type": "string",
+          "description": "转化",
+          "nullable": true
+        },
+        {
+          "name": "material_id",
+          "type": "string",
+          "description": "来源",
+          "nullable": true
+        },
+        {
+          "name": "volume_ul",
+          "type": "number",
+          "description": "消耗体积",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "input_id"
+      ],
+      "references": [
+        {
+          "column": "transform_id",
+          "target_table": "transforms",
+          "target_column": "transform_id"
+        }
+      ],
+      "path": "data/transform_inputs.csv",
+      "row_count": 6,
+      "sha256": "e36392c84ab4ea89e571fdf35a5fa59ffb2222f262e31830b5870cf34126207a"
+    },
+    {
+      "name": "transform_outputs",
+      "description": "真实产管。",
+      "columns": [
+        {
+          "name": "material_id",
+          "type": "string",
+          "description": "新材料",
+          "nullable": true
+        },
+        {
+          "name": "transform_id",
+          "type": "string",
+          "description": "转化",
+          "nullable": true
+        },
+        {
+          "name": "volume_ul",
+          "type": "number",
+          "description": "体积",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "material_id"
+      ],
+      "references": [
+        {
+          "column": "transform_id",
+          "target_table": "transforms",
+          "target_column": "transform_id"
+        }
+      ],
+      "path": "data/transform_outputs.csv",
+      "row_count": 4,
+      "sha256": "586efecaa4cd35fab1c02b1c466af953a0ca38ad824496145e84b4b7fb11aa5e"
+    },
+    {
+      "name": "runs",
+      "description": "真实执行及复测。",
+      "columns": [
+        {
+          "name": "run_id",
+          "type": "string",
+          "description": "运行",
+          "nullable": true
+        },
+        {
+          "name": "method",
+          "type": "string",
+          "description": "方法",
+          "nullable": true
+        },
+        {
+          "name": "method_version",
+          "type": "string",
+          "description": "版",
+          "nullable": true
+        },
+        {
+          "name": "started",
+          "type": "datetime",
+          "description": "开始",
+          "nullable": true
+        },
+        {
+          "name": "qc",
+          "type": "string",
+          "description": "passed或failed",
+          "nullable": true
+        },
+        {
+          "name": "rerun_of",
+          "type": "string",
+          "description": "原运行",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "run_id"
+      ],
+      "references": [
+        {
+          "column": "rerun_of",
+          "target_table": "runs",
+          "target_column": "run_id"
+        }
+      ],
+      "path": "data/runs.csv",
+      "row_count": 4,
+      "sha256": "6df56c67f02cb3c62580fe451eb2b53a093f5d1dfa0021107a8d881fe7fa63ff"
+    },
+    {
+      "name": "well_inputs",
+      "description": "孔内真实消耗，不把导出重复当消耗。",
+      "columns": [
+        {
+          "name": "input_id",
+          "type": "string",
+          "description": "加样",
+          "nullable": true
+        },
+        {
+          "name": "run_id",
+          "type": "string",
+          "description": "运行",
+          "nullable": true
+        },
+        {
+          "name": "plate_id",
+          "type": "string",
+          "description": "板",
+          "nullable": true
+        },
+        {
+          "name": "well",
+          "type": "string",
+          "description": "孔",
+          "nullable": true
+        },
+        {
+          "name": "material_id",
+          "type": "string",
+          "description": "材料",
+          "nullable": true
+        },
+        {
+          "name": "volume_ul",
+          "type": "number",
+          "description": "体积",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "input_id"
+      ],
+      "references": [
+        {
+          "column": "run_id",
+          "target_table": "runs",
+          "target_column": "run_id"
+        }
+      ],
+      "path": "data/well_inputs.csv",
+      "row_count": 4,
+      "sha256": "c9dfbb492c433f3e835fd1154c5039e8f6d64ba454257ce63dd28143fc5ed23b"
+    },
+    {
+      "name": "material_events",
+      "description": "冻融与位置经历。",
+      "columns": [
+        {
+          "name": "event_id",
+          "type": "string",
+          "description": "事件",
+          "nullable": true
+        },
+        {
+          "name": "material_id",
+          "type": "string",
+          "description": "材料",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "freeze_thaw或return或discard",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "时点",
+          "nullable": true
+        },
+        {
+          "name": "volume_ul",
+          "type": "number",
+          "description": "废弃量或空",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "event_id"
+      ],
+      "references": [],
+      "path": "data/material_events.csv",
+      "row_count": 3,
+      "sha256": "a9c61f9802c72db1aca6b686845357a65408799946d9cb481681e2d016fcb3ea"
+    },
+    {
+      "name": "method_rules",
+      "description": "证据使用契约。",
+      "columns": [
+        {
+          "name": "method",
+          "type": "string",
+          "description": "方法",
+          "nullable": true
+        },
+        {
+          "name": "allows_pool",
+          "type": "boolean",
+          "description": "接受混池",
+          "nullable": true
+        },
+        {
+          "name": "max_dilution",
+          "type": "number",
+          "description": "最大稀释倍数",
+          "nullable": true
+        },
+        {
+          "name": "max_freeze_thaw",
+          "type": "integer",
+          "description": "最大冻融",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "method"
+      ],
+      "references": [],
+      "path": "data/method_rules.csv",
+      "row_count": 2,
+      "sha256": "f9739e1fe65454a844d3a7941c2316570dfd9c1766fda361c30c48c87af0836f"
+    }
+  ]
+}

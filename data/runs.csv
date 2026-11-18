@@ -1,0 +1,5 @@
+run_id,method,method_version,started,qc,rerun_of
+R1,M1,v1,2026-10-14T08:00:00+08:00,passed,
+R2,M2,v1,2026-10-15T08:00:00+08:00,passed,
+R3,M2,v2,2026-10-16T08:00:00+08:00,failed,R2
+R4,M2,v2,2026-10-18T08:00:00+08:00,passed,R3

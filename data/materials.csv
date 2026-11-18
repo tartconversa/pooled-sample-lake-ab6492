@@ -1,0 +1,5 @@
+material_id,kind,project,volume_ul
+S1,sample,P1,100
+S2,sample,P1,100
+S3,sample,P2,80
+BUF,buffer,,1000

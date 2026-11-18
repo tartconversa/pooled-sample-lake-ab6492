@@ -1,0 +1,3 @@
+method,allows_pool,max_dilution,max_freeze_thaw
+M1,false,5,2
+M2,true,10,3

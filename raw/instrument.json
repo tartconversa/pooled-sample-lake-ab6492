@@ -1,0 +1,131 @@
+{
+  "exports": [
+    {
+      "export_id": "EX1",
+      "run_id": "R1",
+      "method_version": "v1",
+      "plates": [
+        {
+          "plate_id": "PL1",
+          "wells": [
+            {
+              "well": "A1",
+              "measurements": [
+                {
+                  "channel": "signal",
+                  "unit": "ng/mL",
+                  "replicate": 1,
+                  "value": 12
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "export_id": "EX2",
+      "run_id": "R2",
+      "method_version": "v1",
+      "plates": [
+        {
+          "plate_id": "PL2",
+          "wells": [
+            {
+              "well": "A1",
+              "measurements": [
+                {
+                  "channel": "signal",
+                  "unit": "ng/mL",
+                  "replicate": 1,
+                  "value": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "export_id": "EX2COPY",
+      "run_id": "R2",
+      "method_version": "v1",
+      "plates": [
+        {
+          "plate_id": "PL2",
+          "wells": [
+            {
+              "well": "A1",
+              "measurements": [
+                {
+                  "channel": "signal",
+                  "unit": "ng/mL",
+                  "replicate": 1,
+                  "value": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "export_id": "EX3",
+      "run_id": "R3",
+      "method_version": "v2",
+      "plates": [
+        {
+          "plate_id": "PL3",
+          "wells": [
+            {
+              "well": "A1",
+              "measurements": [
+                {
+                  "channel": "mass_concentration",
+                  "unit": "ug/L",
+                  "replicate": 1,
+                  "value": 0.5
+                },
+                {
+                  "channel": "ratio",
+                  "unit": "1",
+                  "replicate": 1,
+                  "value": 0.8
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "export_id": "EX4",
+      "run_id": "R4",
+      "method_version": "v2",
+      "plates": [
+        {
+          "plate_id": "PL4",
+          "wells": [
+            {
+              "well": "A1",
+              "measurements": [
+                {
+                  "channel": "mass_concentration",
+                  "unit": "ug/L",
+                  "replicate": 1,
+                  "value": 0.52
+                },
+                {
+                  "channel": "ratio",
+                  "unit": "1",
+                  "replicate": 1,
+                  "value": 0.8
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+input_id,run_id,plate_id,well,material_id,volume_ul
+W1,R1,PL1,A1,S3,10
+W2,R2,PL2,A1,POOL,5
+W3,R3,PL3,A1,DIL2,5
+W4,R4,PL4,A1,DIL2,5
